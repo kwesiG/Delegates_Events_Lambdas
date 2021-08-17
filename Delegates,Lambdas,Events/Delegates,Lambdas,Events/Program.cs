@@ -2,7 +2,7 @@
 
 namespace Delegates_Lambdas_Events
 {
-    public delegate void WorkPerformedHandler(int hours, WorkType workType);
+    public delegate int WorkPerformedHandler(int hours, WorkType workType);
     public class Program
     {
         static void Main(string[] args)
@@ -15,6 +15,8 @@ namespace Delegates_Lambdas_Events
             //del1 += del3;
             del1 += del2 + del3;
 
+            int finalHours = del1(10, WorkType.PrintReports);
+            Console.WriteLine(finalHours);
             DoWork(del1);
             Console.ReadLine();
         }
@@ -24,18 +26,21 @@ namespace Delegates_Lambdas_Events
             del(5, WorkType.GoToMeetings);
         }
 
-        static void WorkPerformed1(int hours, WorkType workType)
+        static int WorkPerformed1(int hours, WorkType workType)
         {
             Console.WriteLine("WorkPerformed1 Called " + hours.ToString());
+            return hours+1;
         }
 
-        static void WorkPerformed2(int hours, WorkType workType)
+        static int WorkPerformed2(int hours, WorkType workType)
         {
             Console.WriteLine("WorkPerformed2 Called " + hours.ToString());
+            return hours + 2;
         }
-        static void WorkPerformed3(int hours, WorkType workType)
+        static int WorkPerformed3(int hours, WorkType workType)
         {
             Console.WriteLine("WorkPerformed3 Called " + hours.ToString());
+            return hours + 3;
         }
     }
 }
