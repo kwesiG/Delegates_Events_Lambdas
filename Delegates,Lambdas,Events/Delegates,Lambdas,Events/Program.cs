@@ -8,6 +8,12 @@ namespace Delegates_Lambdas_Events
         static void Main(string[] args)
         {
             var worker = new Worker();
+            // Anonymous method example
+            worker.WorkPerformed += delegate (object sender, WorkPerformedEventArgs e)
+            {
+                Console.WriteLine("Inside the anonymous method + hours: " +  e.Hours.ToString());
+            }; // End of anonymous method but remember in general lamdas are more popular for inline solutions
+
             worker.WorkPerformed += Worker_workPerformed;
             worker.WorkCompleted += Worker_WorkCompleted;
             worker.DoWork(8, WorkType.PrintReports);
