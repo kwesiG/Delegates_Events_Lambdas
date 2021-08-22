@@ -15,6 +15,11 @@ namespace Delegates_Lambdas_Events
             data.Process(3, 4, addDel);
             data.Process(3, 4, multiplyDel);
 
+            Action<int, int> myAddAction = (x, y) => Console.WriteLine(x + y);
+            Action<int, int> myMultipyAction = (x, y) => Console.WriteLine(x * y);
+            data.ProcessAction(3, 4, myAddAction);
+            data.ProcessAction(3, 4, myMultipyAction);
+
             var worker = new Worker();
             // Anonymous method example
             worker.WorkPerformed += delegate (object sender, WorkPerformedEventArgs e)
