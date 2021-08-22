@@ -2,11 +2,19 @@
 
 namespace Delegates_Lambdas_Events
 {
+    public delegate int BizRuleDelegate(int x, int y);
 
     public class Program
     {
         static void Main(string[] args)
         {
+            BizRuleDelegate addDel = (x, y) => x + y;
+            BizRuleDelegate multiplyDel = (x, y) => x * y;
+
+            var data = new ProcessData();
+            data.Process(3, 4, addDel);
+            data.Process(3, 4, multiplyDel);
+
             var worker = new Worker();
             // Anonymous method example
             worker.WorkPerformed += delegate (object sender, WorkPerformedEventArgs e)
@@ -22,7 +30,6 @@ namespace Delegates_Lambdas_Events
                 Console.WriteLine("Lambda with brackets ..Hours worked : " + e.Hours + " " + e.WorkType);
             };
             worker.DoWork(8, WorkType.PrintReports);
-            Console.Read();
         }
 
         private static void Worker_workPerformed(object sender, WorkPerformedEventArgs e)
