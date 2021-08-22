@@ -16,6 +16,11 @@ namespace Delegates_Lambdas_Events
 
             worker.WorkPerformed += Worker_workPerformed;
             worker.WorkCompleted += Worker_WorkCompleted;
+            worker.WorkPerformed += (s, e) => Console.WriteLine("Lambda hours worked : " + e.Hours + " " + e.WorkType);
+            worker.WorkPerformed += (s, e) =>
+            {
+                Console.WriteLine("Lambda with brackets ..Hours worked : " + e.Hours + " " + e.WorkType);
+            };
             worker.DoWork(8, WorkType.PrintReports);
             Console.Read();
         }
